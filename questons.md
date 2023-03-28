@@ -1,4 +1,4 @@
-# Part 2 - Frontend Test for Deel.
+# Part 2 - Frontend Questions related to Filter.
 
 ## Questions:
 
