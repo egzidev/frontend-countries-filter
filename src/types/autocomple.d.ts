@@ -16,3 +16,8 @@ export interface AutocompleteListProps {
     focusSearch: boolean;
     handleItemClick: (name: string, country: Country) => void;
 }
+
+export interface HighlightSearchTextProps {
+    text: string;
+    search: string;
+}

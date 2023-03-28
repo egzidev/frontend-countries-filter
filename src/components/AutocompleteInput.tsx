@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, memo} from 'react';
 import {AutocompleteInputProps} from "../types/autocomple";
 import {Country} from "../types/country";
 
@@ -38,22 +38,20 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = (props) => {
     // Function to filter the countries based on the search value
     const filterCountries = async (value: string): Promise<Country[]> => {
         return await new Promise<Country[]>((resolve) => {
-            setTimeout(() => {
-                const regex = new RegExp(value, 'gi')
+            const regex = new RegExp(value, 'gi')
 
-                // Use regex to filter the countries
-                const filteredCountries = countries.filter(
-                    (country) => country.name.common.match(regex) !== null
-                );
+            // Use regex to filter the countries
+            const filteredCountries = countries.filter(
+                (country) => country.name.common.match(regex) !== null
+            );
 
-                resolve(filteredCountries)
-            }, 500)
+            resolve(filteredCountries)
         });
     }
 
     return (
         <input
-            className="deel-autocomplete__input"
+            className="countries-autocomplete__input"
             type="text"
             value={searchCountries}
             onChange={handleSearchInputChange}
@@ -63,4 +61,4 @@ const AutocompleteInput: React.FC<AutocompleteInputProps> = (props) => {
     );
 };
 
-export default AutocompleteInput;
+export default memo(AutocompleteInput);

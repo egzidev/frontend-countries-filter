@@ -76,12 +76,12 @@ button:focus-visible {
 }
 
 
-.deel-autocomplete {
+.countries-autocomplete {
   position: relative;
   width: 100%;
 }
 
-.deel-autocomplete__input {
+.countries-autocomplete__input {
   width: 400px;
   padding: 8px 12px;
   font-size: 16px;
@@ -89,7 +89,7 @@ button:focus-visible {
   border-radius: 4px;
 }
 
-.deel-autocomplete__list {
+.countries-autocomplete__list {
   position: absolute;
   z-index: 1;
   top: 100%;
@@ -108,15 +108,15 @@ button:focus-visible {
   width: 100%;
 }
 
-.deel-autocomplete__list-open{
+.countries-autocomplete__list-open{
   display: block;
 }
 
-.deel-autocomplete__list-close{
+.countries-autocomplete__list-close{
   display: none;
 }
 
-.deel-autocomplete__list li {
+.countries-autocomplete__list li {
   padding: 8px 12px;
   font-size: 16px;
   color: #fff;
@@ -124,12 +124,12 @@ button:focus-visible {
   text-align: left;
 }
 
-.deel-autocomplete__list li:hover,
-.deel-autocomplete__list li.active {
+.countries-autocomplete__list li:hover,
+.countries-autocomplete__list li.active {
   background-color: #3a3a3a;
 }
 
-.deel-autocomplete__match {
+.countries-autocomplete__match {
   font-weight: bold;
   color: #8aff59;
 }

@@ -2,9 +2,9 @@ import React from 'react';
 
 const Loading = () => {
     return (
-        <ul className="deel-autocomplete__list deel-autocomplete__list-open">
+        <ul className="countries-autocomplete__list countries-autocomplete__list-open">
             <li>
-                <div className="deel-autocomplete__loading">Loading...</div>
+                <div className="countries-autocomplete__loading">Loading...</div>
             </li>
         </ul>
     )

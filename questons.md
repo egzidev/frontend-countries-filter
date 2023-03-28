@@ -33,16 +33,7 @@
 4. Two ways are PureComponent where I explained above why and how, and React.memo for function components to memoize the result of the component.
 5. Usually the Fragment before using this <></> we used `<Fragment></Fragment>`, but since we started to use Hooks they presented the new way of calling fragment without writing down. I usually use the fragment in order to wrap all the elements when there is no element like a parent, so I use to group multiple elements
 Example where the app might break:
-```typescript jsx
-  function Example() {
-    return (
-     /* Fragment goes here <> */
-     <div>Test 1</div>
-     <div>Test 1</div>
-     /* Fragment goes here </> */
-    )
-}
-  ```
+
 6. In my previous jobs I kind of create some HOC to help to team with:
    * withAuth - I add authentication logic to component by wrapping with the component that check if the user is logged in and redirect to login page if it's not
    * withLoading - I add loading spinner while data is being fetched
@@ -70,7 +61,7 @@ Example where the app might break:
         // use dangerouslySetInnerHTML to render the highlighted text
         __html: country.name.common.replace(
             new RegExp(`(${searchCountries})`, 'gi'),
-            "<span class='deel-autocomplete__match'>$1</span>"
+            "<span class='countries-autocomplete__match'>$1</span>"
         ),
     }}
 />

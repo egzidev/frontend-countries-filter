@@ -39,6 +39,8 @@ function App() {
     const handleSearchInputFocus = () => {
         // Toggle the focusSearch state variable
         setFocusSearch(!focusSearch);
+
+        if (!countries.length) fetchCountries()
     }
 
 
@@ -51,14 +53,9 @@ function App() {
         setFocusSearch(false);
     };
 
-    useEffect(() => {
-        // Fetch the countries data on mount
-        fetchCountries()
-    }, [])
-
     return (
         <div className="App">
-            <div className="deel-autocomplete">
+            <div className="countries-autocomplete">
                 <AutocompleteInput
                     searchCountries={searchCountries}
                     setSearchCountries={setSearchCountries}
@@ -68,7 +65,7 @@ function App() {
                     handleSearchInputFocus={handleSearchInputFocus}
                 />
                 {isLoading ?
-                    <Loading/>
+                    focusSearch ? <Loading/> : null
                     :
                     <AutocompleteList
                         filteredCountries={filteredCountries}

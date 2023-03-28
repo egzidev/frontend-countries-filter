@@ -1,5 +1,5 @@
-import React from 'react';
-import {AutocompleteListProps} from "../types/autocomple";
+import React, {memo} from 'react';
+import {AutocompleteListProps, HighlightSearchTextProps} from "../types/autocomple";
 
 const AutocompleteList: React.FC<AutocompleteListProps> = (props) => {
     const {
@@ -9,27 +9,38 @@ const AutocompleteList: React.FC<AutocompleteListProps> = (props) => {
         handleItemClick,
     } = props
 
+    console.log(focusSearch)
+    const highlightSearchText = ({text, search}: HighlightSearchTextProps) => {
+        const regex = new RegExp(`(${search})`, "gi");
+        const parts = text.split(regex);
+        return (
+            <>
+                {parts.map((part, i) => (
+                    regex.test(part) ? <span key={i} className="countries-autocomplete__match">{part}</span> : part
+                ))}
+            </>
+        );
+    }
+
     return (
         <ul
-            className={`deel-autocomplete__list ${
+            className={`countries-autocomplete__list ${
                 focusSearch
-                    ? 'deel-autocomplete__list-open'
-                    : 'deel-autocomplete__list-close'
+                    ? 'countries-autocomplete__list-open'
+                    : 'countries-autocomplete__list-close'
             }`}
         >
             {filteredCountries && filteredCountries.length > 0 ? (
-                filteredCountries.map((country, index) => (
+                filteredCountries.map((country) => (
                     <li
-                        key={index}
+                        key={country.name.common}
                         onClick={() => handleItemClick(country.name.common, country)}
-                        dangerouslySetInnerHTML={{
-                            // use dangerouslySetInnerHTML to render the highlighted text
-                            __html: country.name.common.replace(
-                                new RegExp(`(${searchCountries})`, 'gi'),
-                                "<span class='deel-autocomplete__match'>$1</span>"
-                            ),
-                        }}
-                    />
+                    >
+                        {searchCountries ? highlightSearchText({
+                            text: country.name.common,
+                            search: searchCountries
+                        }) : country.name.common}
+                    </li>
                 ))
             ) : (
                 <li>No Result</li>
@@ -38,4 +49,4 @@ const AutocompleteList: React.FC<AutocompleteListProps> = (props) => {
     );
 };
 
-export default AutocompleteList;
+export default memo(AutocompleteList);
